@@ -44,18 +44,12 @@ local function dcb_easy_agents_apply_bundle()
                 cm:set_saved_value(save_string, true);
                 
                 out("Faction " .. current_faction_name .. " is human. Save flag " .. save_string .. " not detected.");
-                
-                -- Safety check for saves using the legacy version of the mod since I made a bit of a hash of the original script, doing per-faction checks instead of a single culture check.
-                if not cm:get_saved_value("dcb_easy_agents_noctilus_bundle_init") and not cm:get_saved_value("dcb_easy_agents_luthor_bundle_init") and not cm:get_saved_value("dcb_easy_agents_cylostra_bundle_init") and not cm:get_saved_value("dcb_easy_agents_aranessa_bundle_init") then
-                    
-                    out("Applying Vampire Coast agent bundle.");
-                    
-                    -- Add the agent effects to the bundle, then apply the bundle to the faction.
-                    dcb_easy_agents_coast_bundle(coast_bundle);
-                    cm:apply_custom_effect_bundle_to_faction(coast_bundle, cm:get_faction(current_faction_name));
-                end;
-            
+                out("Applying Vampire Coast agent bundle.");
                 out("");
+                
+                -- Add the agent effects to the bundle, then apply the bundle to the faction.
+                dcb_easy_agents_coast_bundle(coast_bundle);
+                cm:apply_custom_effect_bundle_to_faction(coast_bundle, cm:get_faction(current_faction_name));
             
             elseif current_culture == ogres_culture and not cm:get_saved_value(save_string) then
                 
